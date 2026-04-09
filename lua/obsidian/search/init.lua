@@ -18,6 +18,7 @@ M.build_grep_cmd = Ripgrep.build_grep_cmd
 ---| "Markdown"
 ---| "Tag"
 ---| "BlockID"
+---| "NakedUrl"
 ---| "Highlight"
 ---| "HeaderLink"
 ---| "BlockLink"
@@ -38,6 +39,7 @@ M.Patterns = {
   WikiWithAlias = "%[%[[^][%|]+%|[^%]]+%]%]", -- [[xxx|yyy]]
   Wiki = "%[%[[^][%|]+%]%]", -- [[xxx]]
   Markdown = "%[[^][]+%]%([^%)]+%)", -- [yyy](xxx)
+  NakedUrl = "https?://[a-zA-Z0-9._-@]+[a-zA-Z0-9._#/=&?:+%%-@]+[a-zA-Z0-9/]", -- https://xyz.com
   BlockID = util.BLOCK_PATTERN .. "$", -- ^hello-world
 }
 
@@ -155,6 +157,7 @@ M.find_refs = function(s, opts)
     "WikiWithAlias",
     "Wiki",
     "Markdown",
+    "NakedUrl",
     "Tag",
     "BlockID",
     "Highlight",

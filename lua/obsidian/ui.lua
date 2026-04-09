@@ -350,6 +350,20 @@ local function get_line_ref_extmarks(marks, line, lnum, ui_opts)
           hl_group = ui_opts.external_link_icon.hl_group,
         }
       )
+    elseif m_type == "NakedUrl" then
+      -- A "naked" URL is just a URL by itself, like 'https://github.com/'
+      -- Highlight the whole thing.
+      marks[#marks + 1] = ExtMark.new(
+        nil,
+        lnum,
+        m_start - 1,
+        ExtMarkOpts.from_tbl {
+          end_row = lnum,
+          end_col = m_end,
+          hl_group = ui_opts.reference_text.hl_group,
+          spell = false,
+        }
+      )
     elseif m_type == "Tag" then
       -- A tag is like '#tag'
       marks[#marks + 1] = ExtMark.new(
