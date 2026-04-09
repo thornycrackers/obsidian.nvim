@@ -347,7 +347,7 @@ local function get_line_ref_extmarks(marks, line, lnum, ui_opts)
         ExtMarkOpts.from_tbl {
           end_row = lnum,
           end_col = closing_bracket_loc + 1,
-          conceal = is_uri and " " or "",
+          conceal = "",
         }
       )
       -- Conceal the URL part 'xxx' with the external URL character
@@ -358,7 +358,7 @@ local function get_line_ref_extmarks(marks, line, lnum, ui_opts)
         ExtMarkOpts.from_tbl {
           end_row = lnum,
           end_col = m_end - 1,
-          conceal = is_uri and ui_opts.external_link_icon.char or "",
+          conceal = "",
           hl_group = ui_opts.external_link_icon.hl_group,
         }
       )
@@ -370,7 +370,7 @@ local function get_line_ref_extmarks(marks, line, lnum, ui_opts)
         ExtMarkOpts.from_tbl {
           end_row = lnum,
           end_col = m_end,
-          conceal = is_uri and " " or "",
+          conceal = "",
         }
       )
     elseif m_type == "Tag" then
