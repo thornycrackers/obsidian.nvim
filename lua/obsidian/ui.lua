@@ -339,18 +339,7 @@ local function get_line_ref_extmarks(marks, line, lnum, ui_opts)
           spell = false,
         }
       )
-      -- Conceal the ']('
-      marks[#marks + 1] = ExtMark.new(
-        nil,
-        lnum,
-        closing_bracket_loc - 1,
-        ExtMarkOpts.from_tbl {
-          end_row = lnum,
-          end_col = closing_bracket_loc + 1,
-          conceal = "",
-        }
-      )
-      -- Conceal the URL part 'xxx' with the external URL character
+      -- Highlight the URL part 'xxx'
       marks[#marks + 1] = ExtMark.new(
         nil,
         lnum,
@@ -358,19 +347,7 @@ local function get_line_ref_extmarks(marks, line, lnum, ui_opts)
         ExtMarkOpts.from_tbl {
           end_row = lnum,
           end_col = m_end - 1,
-          conceal = "",
           hl_group = ui_opts.external_link_icon.hl_group,
-        }
-      )
-      -- Conceal the closing ')'
-      marks[#marks + 1] = ExtMark.new(
-        nil,
-        lnum,
-        m_end - 1,
-        ExtMarkOpts.from_tbl {
-          end_row = lnum,
-          end_col = m_end,
-          conceal = "",
         }
       )
     elseif m_type == "Tag" then
